@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="Aspires">
 <meta property="og:description" content="1Hello world 2018年2月2日 — 总算是搭建好了Aspires.cc . 本站建立在Github Pages上，使用优雅的hexo生成器 . Github Pages搭建心得用来做静态网站，免费很赞，而且速度很快的 . 搭建起来也不算太耗时，有强大的博客软件的支持 .  hexo的安装简单的一步: 1npm install hexo-cli -g 然后折腾折腾配置文件，就可以 en">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-04T14:00:35.298Z">
+<meta property="og:updated_time" content="2018-02-06T00:33:25.388Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hello Aspires.cc">
 <meta name="twitter:description" content="1Hello world 2018年2月2日 — 总算是搭建好了Aspires.cc . 本站建立在Github Pages上，使用优雅的hexo生成器 . Github Pages搭建心得用来做静态网站，免费很赞，而且速度很快的 . 搭建起来也不算太耗时，有强大的博客软件的支持 .  hexo的安装简单的一步: 1npm install hexo-cli -g 然后折腾折腾配置文件，就可以 en">
@@ -55,7 +55,7 @@
       
       <div class="profile-block text-center">
         <a id="avatar" href="https://github.com/Ex10si0n" target="_blank">
-          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+          <img class="img-circle" src="/images/avatar.jpg" width="200" height="200">
         </a>
         <h2 id="name" class="hidden-xs hidden-sm">Ex10si0n</h2>
         <h3 id="title" class="hidden-xs hidden-sm hidden-md">OIer &amp; Designer</h3>
@@ -385,7 +385,9 @@
   <section id="comments">
   	
        
-    <div id="uyan_frame"></div>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
 
     
   </section>
@@ -471,8 +473,8 @@
 
     <div class="copyright">
     	
-        <div class="publishby">
-        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        <div>
+        	Copyright by <a herf="https://github.com/Ex10si0n">Ex10si0n</a> & <a herf="https://github.com/aspire-stduio">Aspire-Studio</a>.
         </div>
     </div>
 </footer>
@@ -515,7 +517,20 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     
         
     
-    <script defer type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=[object Object]"></script>
+    <script defer>
+    var disqus_config = function () {
+        
+            this.page.url = 'https://aspire-studio.github.io/hello-world/';
+        
+        this.page.identifier = 'hello-world';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'aspires-cc' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
 
 
     
