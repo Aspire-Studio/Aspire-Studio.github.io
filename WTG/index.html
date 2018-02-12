@@ -16,21 +16,39 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Hello Aspires.cc | Aspire Studio</title>
-  <meta name="description" content="1Hello world 2018年2月2日 — 总算是搭建好了Aspires.cc . 本站建立在Github Pages上，使用优雅的hexo生成器 . Github Pages搭建心得用来做静态网站，免费很赞，而且速度很快的 . 搭建起来也不算太耗时，有强大的博客软件的支持 .  hexo的安装1npm install hexo-cli -g 然后折腾折腾配置文件，配置好git，折腾半天就能">
-<meta name="keywords" content="前端">
+  <title>Mac用户的福音——外置硬盘安装WinToGo | Aspire Studio</title>
+  <meta name="description" content="128GB的Mac确实很坑，升级完High Sierra之后如果想分区装系统是很麻烦的事情，就算是BootCamp分成了64GB+64GB的两个区，系统空间也不够啊，所以本文将思路从花很多钱更换大容量SSD转为外设硬盘/SSD使用Windows To Go运行在连接USB3.0的Mac上，实测系统运行速度还是很优秀的，可能是硬盘比较新吧。PS：我的方案是希捷1TB 7200转 3.5寸HDD，Or">
+<meta name="keywords" content="Windows">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello Aspires.cc">
-<meta property="og:url" content="https://aspire-studio.github.io/hello-world/index.html">
+<meta property="og:title" content="Mac用户的福音——外置硬盘安装WinToGo">
+<meta property="og:url" content="https://aspire-studio.github.io/WTG/index.html">
 <meta property="og:site_name" content="Aspires">
-<meta property="og:description" content="1Hello world 2018年2月2日 — 总算是搭建好了Aspires.cc . 本站建立在Github Pages上，使用优雅的hexo生成器 . Github Pages搭建心得用来做静态网站，免费很赞，而且速度很快的 . 搭建起来也不算太耗时，有强大的博客软件的支持 .  hexo的安装1npm install hexo-cli -g 然后折腾折腾配置文件，配置好git，折腾半天就能">
+<meta property="og:description" content="128GB的Mac确实很坑，升级完High Sierra之后如果想分区装系统是很麻烦的事情，就算是BootCamp分成了64GB+64GB的两个区，系统空间也不够啊，所以本文将思路从花很多钱更换大容量SSD转为外设硬盘/SSD使用Windows To Go运行在连接USB3.0的Mac上，实测系统运行速度还是很优秀的，可能是硬盘比较新吧。PS：我的方案是希捷1TB 7200转 3.5寸HDD，Or">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-09T10:18:11.049Z">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午3.54.34.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午4.09.00.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午4.21.35.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午4.21.48.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午4.35.46.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午4.52.58.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午5.33.34.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午5.37.05.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午5.08.19.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午5.40.53.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午5.38.40.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午5.38.55.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午5.39.02.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午5.40.53.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午5.41.07.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午6.03.08.png">
+<meta property="og:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/无标题.png">
+<meta property="og:updated_time" content="2018-02-12T11:14:23.430Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello Aspires.cc">
-<meta name="twitter:description" content="1Hello world 2018年2月2日 — 总算是搭建好了Aspires.cc . 本站建立在Github Pages上，使用优雅的hexo生成器 . Github Pages搭建心得用来做静态网站，免费很赞，而且速度很快的 . 搭建起来也不算太耗时，有强大的博客软件的支持 .  hexo的安装1npm install hexo-cli -g 然后折腾折腾配置文件，配置好git，折腾半天就能">
+<meta name="twitter:title" content="Mac用户的福音——外置硬盘安装WinToGo">
+<meta name="twitter:description" content="128GB的Mac确实很坑，升级完High Sierra之后如果想分区装系统是很麻烦的事情，就算是BootCamp分成了64GB+64GB的两个区，系统空间也不够啊，所以本文将思路从花很多钱更换大容量SSD转为外设硬盘/SSD使用Windows To Go运行在连接USB3.0的Mac上，实测系统运行速度还是很优秀的，可能是硬盘比较新吧。PS：我的方案是希捷1TB 7200转 3.5寸HDD，Or">
+<meta name="twitter:image" content="https://aspire-studio.github.io/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照%202018-02-12%20下午3.54.34.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://aspire-studio.github.io/hello-world/index.html">
+  <link rel="canonical" href="https://aspire-studio.github.io/WTG/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Aspires" type="application/atom+xml">
   
@@ -319,14 +337,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-hello-world" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-WTG" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Hello Aspires.cc
+      Mac用户的福音——外置硬盘安装WinToGo
     </h1>
   
 
@@ -334,20 +352,20 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/hello-world/" class="article-date">
-	  <time datetime="2018-02-02T11:44:00.000Z" itemprop="datePublished">2018-02-02</time>
+	<a href="/WTG/" class="article-date">
+	  <time datetime="2018-02-12T07:58:00.000Z" itemprop="datePublished">2018-02-12</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/开发/">开发</a>
+    <a class="article-category-link" href="/categories/教程/">教程</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/前端/">前端</a>
+	<a class="article-tag-link" href="/tags/Windows/">Windows</a>
   </span>
 
 
@@ -360,20 +378,46 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/hello-world/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/WTG/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello world</span><br></pre></td></tr></table></figure>
-<p>2018年2月2日 — 总算是搭建好了Aspires.cc .</p>
-<p>本站建立在Github Pages上，使用优雅的hexo生成器 .</p>
-<h3 id="Github-Pages搭建心得"><a href="#Github-Pages搭建心得" class="headerlink" title="Github Pages搭建心得"></a>Github Pages搭建心得</h3><p>用来做静态网站，免费很赞，而且速度很快的 . 搭建起来也不算太耗时，有强大的博客软件的支持 . </p>
-<h3 id="hexo的安装"><a href="#hexo的安装" class="headerlink" title="hexo的安装"></a>hexo的安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-<p>然后折腾折腾配置文件，配置好git，折腾半天就能弄完. </p>
-<h3 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h3><p>你好！我是 Ex10si0n . 来自伟大的 PRC . 我热爱设计和开发 . 博客请见 <a href="ex10si0n.com">Ex10si0n的Coding实验室</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> ______      __  __    __     _______    ______     __    _______     _________</span><br><span class="line">/\  ___\    /\ \/ /   /\ \   /\  __  \  /\  ___\   /\ \  /\  __  \   /\   ___  \</span><br><span class="line">\ \  __\    \/ /\ \   \ \ \  \ \ \__\ \ \ \___  \  \ \ \ \ \ \__\ \  \ \  \\ \  \</span><br><span class="line"> \ \_____\  /_/\ \_\   \ \_\  \ \______\ \ \_____\  \ \_\ \ \______\  \ \__\\ \__\</span><br><span class="line">  \/_____/  |_| \/_/    \/_/   \/______/  \/_____/   \/_/  \/______/   \/__/ \/__/</span><br></pre></td></tr></table></figure>
+        <p>128GB的Mac确实很坑，升级完High Sierra之后如果想分区装系统是很麻烦的事情，就算是BootCamp分成了64GB+64GB的两个区，系统空间也不够啊，所以本文将思路从花很多钱更换大容量SSD转为外设硬盘/SSD使用Windows To Go运行在连接USB3.0的Mac上，实测系统运行速度还是很优秀的，可能是硬盘比较新吧。PS：我的方案是希捷1TB 7200转 3.5寸HDD，Orico的USB3.0硬盘盒(外接电源)  PSP：USB3.0硬盘会和波长为2.4Ghz的Wi-Fi产生干扰，建议将Wi-Fi换成5Ghz的模式，或者双频也行，</p>
+<h3 id="需要的一些资源："><a href="#需要的一些资源：" class="headerlink" title="需要的一些资源："></a>需要的一些资源：</h3><p>硬盘/SSD/移动硬盘</p>
+<p>官方企业版镜像下载：<a href="ed2k://|file|cn_windows_10_enterprise_version_1607_updated_jul_2016_x64_dvd_9057083.iso|4149981184|EFCB9D522DAA0C6A7BF3A5464C65DCBC|/]" target="_blank" rel="noopener">来自MSDN 企业版64位</a> 或 <a href="ed2k://|file|cn_windows_10_enterprise_version_1703_updated_march_2017_x86_dvd_10189572.iso|3394940928|2E72355CDA5373B9F778D36CF03B86FD|/" target="_blank" rel="noopener">来自MSDN 企业版32位</a>（复制链接迅雷下载）这里说一下，WTG必须用企业版，想要有应用商店的不要选择LTSB版本，这两个链接是Creative Update版本的。</p>
+<p><img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午3.54.34.png" alt="屏幕快照 2018-02-12 下午3.54.34"></p>
+<p>Mac的Windows驱动：在BootCamp（High Sierra之后叫做转换助理）下载</p>
+<p><img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午4.09.00.png" alt="屏幕快照 2018-02-12 下午4.09.00"></p>
+<p>如果你手头有另一台企业版Windows10则直接跳过下一步</p>
+<h3 id="虚拟机安装Windows10企业版"><a href="#虚拟机安装Windows10企业版" class="headerlink" title="虚拟机安装Windows10企业版"></a>虚拟机安装Windows10企业版</h3><p>因为安装WindowsToGo需要在一台Windows电脑上操作，所以可以用刚刚下载好的镜像跑一个虚拟机（推荐使用VMWare Fusion）</p>
+<p><img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午4.21.35.png" alt="屏幕快照 2018-02-12 下午4.21.35"></p>
+<p><img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午4.21.48.png" alt="屏幕快照 2018-02-12 下午4.21.35"></p>
+<p>来自微软的寒暄…<img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午4.35.46.png" alt="屏幕快照 2018-02-12 下午4.35.46"></p>
+<p>感受一下这么6的画图3D</p>
+<p><img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午4.52.58.png" alt="屏幕快照 2018-02-12 下午4.52.58"></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>装载下载好的镜像文件</p>
+<p><img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午5.33.34.png" alt="屏幕快照 2018-02-12 下午5.33.34"></p>
+<p>在装载后的镜像中<code>sources</code>文件夹下找到 <code>install.wim</code> 并拷贝到桌面，然后进入Windows搜索<code>windows to go</code></p>
+<p><img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午5.37.05.png" alt="屏幕快照 2018-02-12 下午5.37.05"></p>
+<p>连接硬盘，注意，需要格式化硬盘，所以建议您提前做好备份。</p>
+<p><img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午5.08.19.png" alt="屏幕快照 2018-02-12 下午5.08.19"></p>
+<p><img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午5.40.53.png" alt="屏幕快照 2018-02-12 下午5.40.53"></p>
+<p>添加搜索位置（不明白为什么微软设计的不能直接选择文件…）</p>
+<p><img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午5.38.40.png" alt="屏幕快照 2018-02-12 下午5.38.40"></p>
+<p><img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午5.38.55.png" alt="屏幕快照 2018-02-12 下午5.38.55"></p>
+<p><img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午5.39.02.png" alt="屏幕快照 2018-02-12 下午5.39.02"></p>
+<p>搜索位置就是刚刚把install.wim拷贝出来的目录（因为虚拟机设置的是桌面和Mac同步，所以在Mac OS拷贝的文件在虚拟机上自然能直接使用的），等待…<img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午5.40.53.png" alt="屏幕快照 2018-02-12 下午5.40.53"></p>
+<p><img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午5.41.07.png" alt="屏幕快照 2018-02-12 下午5.41.07"></p>
+<p>选否就行了</p>
+<p><img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/屏幕快照 2018-02-12 下午6.03.08.png" alt="屏幕快照 2018-02-12 下午6.03.08"></p>
+<p>安装完成，重新启动电脑。</p>
+<p>开机后按option键 选择EFI Boot，等待Windows初始化结束，电脑会重新启动一次，按option键，选择EFI Boot ，就会进入新系统设置（连键盘和鼠标），设置完后接着听微软念诗寒暄…</p>
+<p>进入系统首先安装好苹果的驱动程序（这个驱动官方好久没更新了…）安装完驱动需要重启到Windows系统，然后就可以开机使用了。</p>
+<p><img src="/Users/Ex10si0n/Desktop/Website/blog/source/Temp/Post.img/无标题.png" alt="无标题"></p>
+<p>需要更好的体验可以登陆微软账号，最好要关闭系统更新（因为我没有成功的更新过WindowsToGo），激活Windows…</p>
+<p>PS，在Windows下苹果的Magic Mouse体验并不是很好。)</p>
 
       
     </div>
@@ -383,7 +427,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://aspire-studio.github.io/hello-world/" title="Hello Aspires.cc" target="_blank" rel="external">https://aspire-studio.github.io/hello-world/</a>
+      <a href="https://aspire-studio.github.io/WTG/" title="Mac用户的福音——外置硬盘安装WinToGo" target="_blank" rel="external">https://aspire-studio.github.io/WTG/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -433,10 +477,10 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/dir/" title="里程碑"><i class="icon icon-angle-left" aria-hidden="true"></i>&nbsp;&nbsp;上一篇</a>
-    </li>
     
+    <li class="next">
+      <a href="/dir/" title="里程碑">下一篇&nbsp;&nbsp;<i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
     
   </ul>
   
@@ -561,9 +605,9 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     <script defer>
     var disqus_config = function () {
         
-            this.page.url = 'https://aspire-studio.github.io/hello-world/';
+            this.page.url = 'https://aspire-studio.github.io/WTG/';
         
-        this.page.identifier = 'hello-world';
+        this.page.identifier = 'WTG';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
