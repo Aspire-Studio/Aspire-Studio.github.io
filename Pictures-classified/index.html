@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>使用深度神经网络的图像分类 | Aspire Studio</title>
+  <meta name="description" content="使用深度神经网络的图像分类介绍深度学习的最新进展使诸如图像和语音识别等任务成为可能。  深度学习：机器学习算法的一个子集，它非常擅长识别模式，但通常需要大量的数据。  深度学习擅长识别图像中的对象，因为它使用3层或更多层的人工神经网络实现，其中每层负责提取图像的一个或多个特征（稍后会详细介绍）。  神经网络：一种计算模型，其工作方式与人类大脑中的神经元相似。每个神经元接受一个输入，执行一些操作，然">
+<meta name="keywords" content="深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用深度神经网络的图像分类">
+<meta property="og:url" content="https://aspire-studio.github.io/Pictures-classified/index.html">
+<meta property="og:site_name" content="Aspires">
+<meta property="og:description" content="使用深度神经网络的图像分类介绍深度学习的最新进展使诸如图像和语音识别等任务成为可能。  深度学习：机器学习算法的一个子集，它非常擅长识别模式，但通常需要大量的数据。  深度学习擅长识别图像中的对象，因为它使用3层或更多层的人工神经网络实现，其中每层负责提取图像的一个或多个特征（稍后会详细介绍）。  神经网络：一种计算模型，其工作方式与人类大脑中的神经元相似。每个神经元接受一个输入，执行一些操作，然">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*590A1_2nItX49wqZKOlaFw.png">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*hCxU4nK6ulpnwhSpgWiPPg.png">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*-xaK2HVoN-zI4rNXKCtjew.gif">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/2000/1*GX_7J9C2vq-Pr_GIKZLP0Q.png">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/0*4_NTV8_Zjh5tLHKD.">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/0*SrTDpcBYxHhp7MSI.">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/0*DE9DJZPMpfy0Hmo5.">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/0*wjLk9sKieYicoSnq.jpeg">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/0*Dg5sf4sqyMbsBrdK.">
+<meta property="og:updated_time" content="2018-02-23T14:47:09.800Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用深度神经网络的图像分类">
+<meta name="twitter:description" content="使用深度神经网络的图像分类介绍深度学习的最新进展使诸如图像和语音识别等任务成为可能。  深度学习：机器学习算法的一个子集，它非常擅长识别模式，但通常需要大量的数据。  深度学习擅长识别图像中的对象，因为它使用3层或更多层的人工神经网络实现，其中每层负责提取图像的一个或多个特征（稍后会详细介绍）。  神经网络：一种计算模型，其工作方式与人类大脑中的神经元相似。每个神经元接受一个输入，执行一些操作，然">
+<meta name="twitter:image" content="https://cdn-images-1.medium.com/max/1600/1*590A1_2nItX49wqZKOlaFw.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://aspire-studio.github.io/Pictures-classified/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Aspires" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center theme-blue" itemscope itemtype="http://schema.org/WebPage">
+  <link rel="apple-touch-icon" href="/favicon.png"/>
+<meta name =“apple-mobile-web-app-status-bar-style”content =“blue”>   
+<header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/Ex10si0n" target="_blank">
+          <img class="img-circle" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Ex10si0n</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">OIer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> LN.China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav">
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Ex10si0n" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            
+            <p>您好，您是第<span id="busuanzi_value_site_uv">0</span>位访客</p>
+            
+            <div class="content">
+                <p>欢迎来到 Aspire Studio.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/开发/">开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/教程/">教程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习/">深度学习</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Windows/" style="font-size: 13px;">Windows</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/深度学习/" style="font-size: 13px;">深度学习</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/深度学习/">深度学习</a>
+              </p>
+              <p class="item-title">
+                <a href="/Pictures-classified/" class="title">使用深度神经网络的图像分类</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-02-23T10:20:00.000Z" itemprop="datePublished">2018-02-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/教程/">教程</a>
+              </p>
+              <p class="item-title">
+                <a href="/WTG/" class="title">Mac用户的福音——外置硬盘安装WinToGo</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-02-12T07:58:00.000Z" itemprop="datePublished">2018-02-12</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/开发/">开发</a>
+              </p>
+              <p class="item-title">
+                <a href="/dir/" class="title">里程碑</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-02-09T10:20:00.000Z" itemprop="datePublished">2018-02-09</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/开发/">开发</a>
+              </p>
+              <p class="item-title">
+                <a href="/hello-world/" class="title">Hello Aspires.cc</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-02-02T11:44:00.000Z" itemprop="datePublished">2018-02-02</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Pictures-classified" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用深度神经网络的图像分类
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/Pictures-classified/" class="article-date">
+	  <time datetime="2018-02-23T10:20:00.000Z" itemprop="datePublished">2018-02-23</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/深度学习/">深度学习</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/深度学习/">深度学习</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/Pictures-classified/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <h1 id="使用深度神经网络的图像分类"><a href="#使用深度神经网络的图像分类" class="headerlink" title="使用深度神经网络的图像分类"></a>使用深度神经网络的图像分类</h1><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>深度学习的最新进展使诸如图像和语音识别等任务成为可能。</p>
+<blockquote>
+<p>深度学习：机器学习算法的一个子集，它非常擅长识别模式，但通常需要大量的数据。</p>
+</blockquote>
+<p>深度学习擅长识别图像中的对象，因为它使用3层或更多层的人工神经网络实现，其中每层负责提取图像的一个或多个特征（稍后会详细介绍）。</p>
+<blockquote>
+<p>神经网络：一种计算模型，其工作方式与人类大脑中的神经元相似。每个神经元接受一个输入，执行一些操作，然后将输出传递给下一个神经元。</p>
+</blockquote>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*590A1_2nItX49wqZKOlaFw.png" alt="img"></p>
+<p>神经网络表示（<a href="http://cs231n.github.io/neural-networks-1/" target="_blank" rel="noopener">src</a>）</p>
+<p>我们将教计算机识别图像并将它们归类为以下10个类别之一：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*hCxU4nK6ulpnwhSpgWiPPg.png" alt="img"></p>
+<p>为此，我们首先需要教给计算机一只猫，一只狗，一只鸟等在识别新物体之前的样子。计算机看到的猫越多，识别猫越好。这被称为监督学习。我们可以通过标记图像来执行这项任务，计算机将开始识别猫图片中存在的图案，这些图案缺少其他图案，并且将开始建立自己的认知。</p>
+<p>我们将使用Python和TensorFlow来编写程序。TensorFlow是由Google创建的开源深度学习框架，它为开发人员提供了对每个神经元（在TensorFlow中称为“节点”）的粒度控制，因此您可以调整权重并实现最佳性能。TensorFlow拥有许多内置库（我们将用于图像分类的很少），并且拥有一个令人惊叹的社区，因此您可以找到几乎任何深度学习主题的开源实现。</p>
+<p>所以让我们来做 - 让我们教计算机对图像进行分类！</p>
+<h3 id="机器学习图像"><a href="#机器学习图像" class="headerlink" title="机器学习图像"></a>机器学习图像</h3><p>计算机能够对数字进行计算，并且无法以我们所做的方式解释图像。我们必须以某种方式将图像转换为计算机要理解的数字。</p>
+<p>在图像处理中有两种常用的方法来做到这一点：</p>
+<ol>
+<li>使用灰度：</li>
+</ol>
+<p>图像将被转换为灰度（从白色到黑色的灰度范围），计算机将根据每个像素的黑暗程度分配一个值。所有数字都放入一个数组中，计算机在该数组上进行计算。这就是使用灰度显示数字8的方式：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*-xaK2HVoN-zI4rNXKCtjew.gif" alt="img"></p>
+<p>图像转换为数字（<a href="https://medium.com/@ageitgey/machine-learning-is-fun-part-3-deep-learning-and-convolutional-neural-networks-f40359318721" target="_blank" rel="noopener">src</a>）</p>
+<p>然后，我们将生成的数组提供给计算机：</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*GX_7J9C2vq-Pr_GIKZLP0Q.png" alt="img"></p>
+<p>结果数组（<a href="https://medium.com/@ageitgey/machine-learning-is-fun-part-3-deep-learning-and-convolutional-neural-networks-f40359318721" target="_blank" rel="noopener">src</a>）</p>
+<p>2.使用RGB值：</p>
+<p>颜色可以表示为RGB值（红色，绿色和蓝色的组合，范围从0到255）。计算机然后可以提取每个像素的RGB值并将结果放入数组中供解释。</p>
+<p>当计算机解释新图像时，它将通过使用相同的技术将图像转换为数组，然后将数字模式与已知对象进行比较。计算机然后为每个班级分配信心分数。信心得分最高的班级通常是预测的班级。</p>
+<h3 id="简单句子（英语）“CNN”"><a href="#简单句子（英语）“CNN”" class="headerlink" title="简单句子（英语）“CNN”"></a>简单句子（英语）“CNN”</h3><p>卷积神经网络（Convolutional Neural Networks，简称CNN）是用于提高图像分类精度的最流行的技术之一。</p>
+<blockquote>
+<p>卷积神经网络：一种特殊类型的神经网络，其工作方式与常规神经网络相同，只是它在开始时具有卷积层</p>
+</blockquote>
+<p>而不是将整个图像作为数字数组输入，图像被分解成多个图块，然后机器会尝试预测每个图块的内容。最后，计算机根据预测的所有图块来预测图片中的内容。这允许计算机并行操作并检测对象，而不管它在图像中的位置。</p>
+<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>我们决定使用<a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank" rel="noopener">CIFAR-10数据集</a>，它包含60,000张大小为32 x 32像素的图像。数据集包含10个与每个包含6,000个图像的类互斥（不重叠）的类。图像很小，标签清晰，没有噪音，这使得数据集非常适合这项任务，而且预处理少得多。以下是从数据集中提取的几张照片：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/0*4_NTV8_Zjh5tLHKD." alt="img"></p>
+<h3 id="步骤1：预处理"><a href="#步骤1：预处理" class="headerlink" title="步骤1：预处理"></a>步骤1：预处理</h3><p>首先，我们需要为数据添加一点变化，因为来自数据集的图像非常有组织，包含很少或没有噪音。我们将使用名为<a href="https://github.com/aleju/imgaug" target="_blank" rel="noopener">imgaug</a>的Python库人为添加噪音。我们将随机对图像进行如下组合：</p>
+<ul>
+<li>裁剪图像的部分</li>
+<li>水平翻转图像</li>
+<li>调整色调，对比度和饱和度</li>
+</ul>
+<p><img src="https://cdn-images-1.medium.com/max/1600/0*SrTDpcBYxHhp7MSI." alt="img"></p>
+<p>以上是结合上述效果的照片</p>
+<p>以下是用于预处理图像的Python代码的样子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pre_process_image</span><span class="params">(image, training)</span>:</span></span><br><span class="line">    <span class="comment"># This function takes a single image as input,</span></span><br><span class="line">    <span class="comment"># and a boolean whether to build the training or testing graph.</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> training:</span><br><span class="line">        <span class="comment"># For training, add the following to the TensorFlow graph.</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Randomly crop the input image.</span></span><br><span class="line">        image = tf.random_crop(image, size=[img_size_cropped, img_size_cropped, num_channels])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Randomly flip the image horizontally.</span></span><br><span class="line">        image = tf.image.random_flip_left_right(image)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Randomly adjust hue, contrast and saturation.</span></span><br><span class="line">        image = tf.image.random_hue(image, max_delta=<span class="number">0.05</span>)</span><br><span class="line">        image = tf.image.random_contrast(image, lower=<span class="number">0.3</span>, upper=<span class="number">1.0</span>)</span><br><span class="line">        image = tf.image.random_brightness(image, max_delta=<span class="number">0.2</span>)</span><br><span class="line">        image = tf.image.random_saturation(image, lower=<span class="number">0.0</span>, upper=<span class="number">2.0</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Some of these functions may overflow and result in pixel</span></span><br><span class="line">        <span class="comment"># values beyond the [0, 1] range. It is unclear from the</span></span><br><span class="line">        <span class="comment"># documentation of TensorFlow 0.10.0rc0 whether this is</span></span><br><span class="line">        <span class="comment"># intended. A simple solution is to limit the range.</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Limit the image pixels between [0, 1] in case of overflow.</span></span><br><span class="line">        image = tf.minimum(image, <span class="number">1.0</span>)</span><br><span class="line">        image = tf.maximum(image, <span class="number">0.0</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># For training, add the following to the TensorFlow graph.</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Crop the input image around the centre so it is the same</span></span><br><span class="line">        <span class="comment"># size as images that are randomly cropped during training.</span></span><br><span class="line">        image = tf.image.resize_image_with_crop_or_pad(image,</span><br><span class="line">                                                       target_height=img_size_cropped,</span><br><span class="line">                                                       target_width=img_size_cropped)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> image</span><br></pre></td></tr></table></figure>
+<h3 id="第2步：分割我们的数据集"><a href="#第2步：分割我们的数据集" class="headerlink" title="第2步：分割我们的数据集"></a>第2步：分割我们的数据集</h3><p>使用整个大型数据集计算模型的梯度需要很长时间。因此，我们将在优化器的每次迭代期间使用一小批图像。批量大小通常为32或64，因为我们有相当多的图像，所以我们将使用64。然后将数据集分成包含50,000个图像的训练集和包含10,000个图像的测试集。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">train_batch_size = <span class="number">64</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_batch</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># Number of images in the training-set.</span></span><br><span class="line">    num_images = len(images_train)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create a random index.</span></span><br><span class="line">    idx = np.random.choice(num_images,</span><br><span class="line">                           size=train_batch_size,</span><br><span class="line">                           replace=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Use the random index to select random images and labels.</span></span><br><span class="line">    x_batch = images_train[idx, :, :, :]</span><br><span class="line">    y_batch = labels_train[idx, :]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> x_batch, y_batch</span><br></pre></td></tr></table></figure>
+<h3 id="第3步：建立卷积神经网络"><a href="#第3步：建立卷积神经网络" class="headerlink" title="第3步：建立卷积神经网络"></a>第3步：建立卷积神经网络</h3><p><img src="https://cdn-images-1.medium.com/max/1600/0*DE9DJZPMpfy0Hmo5." alt="img"></p>
+<p>神经网络体系结构</p>
+<p>现在我们已经完成了预处理和分割我们的数据集，我们可以开始实施我们的神经网络。我们将有3个卷积层，最大为2 x 2。</p>
+<blockquote>
+<p>最大池化：一种技术，用于通过获取网格的最大像素值来减小图像的尺寸。这也有助于减少过度配合并使模型更通用。下面的示例显示了2 x 2最大池的工作原理</p>
+</blockquote>
+<p><img src="https://cdn-images-1.medium.com/max/1600/0*wjLk9sKieYicoSnq.jpeg" alt="img"></p>
+<p>2 x 2最大池（<a href="https://www.quora.com/What-is-max-pooling-in-convolutional-neural-networks" target="_blank" rel="noopener">src</a>）</p>
+<p>之后，我们添加2个完全连接的图层。由于完全连接层的输入应该是二维的，并且卷积层的输出是四维的，所以我们需要它们之间的平坦化层。</p>
+<p>完全连接的层的最后是softmax层。</p>
+<p>参数识别是一项具有挑战性的任务，因为我们有很多参数需要调整。因此，我们阅读了大量资源并试图找出一种方法来实现它。但是，它似乎是基于经验。所以我们找到<a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf" target="_blank" rel="noopener">了Alex Krizhevsky制作的结构</a>，他使用了这种结构并赢得了ImageNet LSVRC-2010的冠军。由于我们的工作比他的工作简单得多，所以我们只使用了3个卷积图层并在它们之间保持一个渐变。</p>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>现在我们有一个训练有素的神经网络，我们可以使用它！然后我们让计算机翻译了10,000张未知图像，并获得了78.4％（7844/10000）的准确率。有趣的是，不正确的预测看起来非常接近电脑的想法。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/0*Dg5sf4sqyMbsBrdK." alt="img"></p>
+<p>错误预测的示例</p>
+<p>例如，以右上角的图片为例，图片看起来像坐在卡车上的一只猫，它足以让电脑预测它为卡车。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>我们能够建立一个人造卷积神经网络，使用TensorFlow可以以78％的精度识别图像。我们通过预处理图像以使模型更通用，将数据集分成许多批次并最终构建和训练模型。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://aspire-studio.github.io/Pictures-classified/" title="使用深度神经网络的图像分类" target="_blank" rel="external">https://aspire-studio.github.io/Pictures-classified/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/Ex10si0n" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/Ex10si0n" target="_blank"><span class="text-dark">Ex10si0n</span><small class="ml-1x">OIer &amp; Designer</small></a></h3>
+        <div></div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/WTG/" title="Mac用户的福音——外置硬盘安装WinToGo">下一篇&nbsp;&nbsp;<i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning hidden-xs" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-tit">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="donate-payimg">
+            <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+          </div>
+          <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+          <div class="donate-payselect">
+            <div class="pay_item checked" data-id="alipay" data-src="/images/donate/alipayimg.png">
+              <div class="radio">
+                <input type="radio" name="payment" id="input-alipay" value="alipay" checked>
+                <label class="pay_logo clickable" for="input-alipay"><img src="/images/donate/alipay.jpg" alt="支付宝" /></label>
+              </div>
+            </div>
+            <div class="pay_item" data-id="weipay" data-src="/images/donate/weipayimg.png">
+              <div class="radio">
+                <input type="radio" name="payment" id="input-weipay" value="weipay">
+                <label class="pay_logo clickable" for="input-weipay"><img src="/images/donate/weipay.jpg" alt="微信支付" /></label>
+              </div>
+            </div>
+          </div>
+          <div class="text-grey">
+            <p>扫一扫，即可进行扫码打赏哦</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/Ex10si0n" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div>
+        	Copyright by <a herf="https://github.com/Ex10si0n">Ex10si0n</a> & <a herf="https://github.com/aspire-stduio">Aspire-Studio</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+    
+        
+<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        
+    
+    <script defer>
+    var disqus_config = function () {
+        
+            this.page.url = 'https://aspire-studio.github.io/Pictures-classified/';
+        
+        this.page.identifier = 'Pictures-classified';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'aspires-cc' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+    
+    
+
+
+
+</body>
+</html>
